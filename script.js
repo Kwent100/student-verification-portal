@@ -70,7 +70,7 @@ const phone = phoneInput.value.trim();
 const gender = genderInput.value;
 const programme = programmeInput.value;
 
-// Validate full name
+
 const namePattern = /^[A-Za-z][A-Za-z\s'-]{1,}$/;
 
 if (!fullName) {
@@ -89,7 +89,7 @@ if (!fullName) {
     isValid = false;
 }
 
-// Validate matriculation number: exactly 8 digits
+
 const matricPattern = /^\d{8}$/;
 
 if (!matricNumber) {
@@ -108,7 +108,6 @@ if (!matricNumber) {
     isValid = false;
 }
 
-// Validate department
 if (!department) {
     showError(
         departmentInput,
@@ -118,7 +117,6 @@ if (!department) {
     isValid = false;
 }
 
-// Validate email and its domain ending
 const emailPattern =
     /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.(com|org|net|edu|gov|ng|uk|com\.ng|edu\.ng)$/i;
 
@@ -139,7 +137,6 @@ if (!email) {
     isValid = false;
 }
 
-// Validate phone number: exactly 11 digits
 const phonePattern = /^\d{11}$/;
 
 if (!phone) {
@@ -158,7 +155,6 @@ if (!phone) {
     isValid = false;
 }
 
-// Validate gender
 if (!gender) {
     showError(
         genderInput,
@@ -168,7 +164,6 @@ if (!gender) {
     isValid = false;
 }
 
-// Validate programme
 if (!programme) {
     showError(
         programmeInput,
@@ -182,7 +177,7 @@ return isValid;
 
 }
 
-// Submit the form
+
 form.addEventListener("submit", function (event) {
 event.preventDefault();
 
@@ -198,7 +193,7 @@ if (!validateForm()) {
 
 const fullName = fullNameInput.value.trim();
 
-// Show congratulations popup with only the full name
+
 congratulationsName.textContent = fullName;
 popup.hidden = false;
 
@@ -206,28 +201,25 @@ continueBtn.focus();
 
 });
 
-// Close popup
+
 function closePopup() {
 popup.hidden = true;
 }
 
 continueBtn.addEventListener("click", closePopup);
 
-// Close popup when the dark background is tapped
 popup.addEventListener("click", function (event) {
 if (event.target === popup) {
 closePopup();
 }
 });
 
-// Close popup with Escape key
+
 document.addEventListener("keydown", function (event) {
 if (event.key === "Escape" && !popup.hidden) {
 closePopup();
 }
-});
-
-// Clear validation errors when the form is reset
+    
 form.addEventListener("reset", function () {
 setTimeout(function () {
 fields.forEach(function (field) {
@@ -236,7 +228,7 @@ clearError(field.input, field.error);
 }, 0);
 });
 
-// Remove an error while the user edits the affected field
+
 fields.forEach(function (field) {
 field.input.addEventListener("input", function () {
 clearError(field.input, field.error);
