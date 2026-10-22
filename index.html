@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration | UNIBEN</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body><div class="container">
+    <header class="header">
+        <h1>Student Registration</h1>
+        <p>University of Benin (UNIBEN)</p>
+        <p class="subtitle">Student Registration Portal</p>
+    </header>
+
+    <main class="form-container">
+        <form id="registrationForm" novalidate>
+
+            <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
+                >
+                <small class="error" id="nameError"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="matricNumber">Matriculation Number:</label>
+                <input
+                    type="text"
+                    id="matricNumber"
+                    name="matricNumber"
+                    placeholder="e.g. 20241234"
+                    inputmode="numeric"
+                    maxlength="8"
+                    required
+                >
+                <small class="error" id="matricError"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <select id="department" name="department" required>
+                    <option value="">Select your department</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Information Technology and Information Communication Technology">
+                        Information Technology and Information Communication Technology
+                    </option>
+                    <option value="Software Engineering and Information Systems">
+                        Software Engineering and Information Systems
+                    </option>
+                    <option value="Cyber Security and Data Science">
+                        Cyber Security and Data Science
+                    </option>
+                </select>
+                <small class="error" id="departmentError"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="e.g. student@gmail.com"
+                    autocomplete="email"
+                    required
+                >
+                <small class="error" id="emailError"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="e.g. 08012345678"
+                    inputmode="numeric"
+                    maxlength="11"
+                    autocomplete="tel"
+                    required
+                >
+                <small class="error" id="phoneError"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+                <small class="error" id="genderError"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="programme">Programme:</label>
+                <select id="programme" name="programme" required>
+                    <option value="">Select your programme</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Information Technology">Information Technology</option>
+                    <option value="Information and Communication Technology">
+                        Information and Communication Technology
+                    </option>
+                    <option value="Software Engineering">Software Engineering</option>
+                    <option value="Information Systems">Information Systems</option>
+                    <option value="Cyber Security">Cyber Security</option>
+                    <option value="Data Science">Data Science</option>
+                </select>
+                <small class="error" id="programmeError"></small>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                Register Now
+            </button>
+
+            <button type="reset" class="reset-btn">
+                Clear Form
+            </button>
+
+        </form>
+
+        <p class="footer-note">
+            Student Registration Portal — Demonstration Project
+        </p>
+    </main>
+</div>
+
+<!-- Congratulations Popup -->
+<div
+    id="successPopup"
+    class="popup-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="successMessage"
+    hidden
+>
+    <div class="popup-box">
+        <div class="celebration-icon">🎉</div>
+        <h2 id="successMessage">Congratulations!</h2>
+        <p id="congratulationsName"></p>
+        <button type="button" id="continueBtn" class="continue-btn">
+            Continue
+        </button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
