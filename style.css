@@ -1,0 +1,263 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  }
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+background: #f2f2f2;
+color: #222;
+line-height: 1.6;
+min-height: 100vh;
+}
+
+.container {
+width: 100%;
+max-width: 850px;
+margin: 25px auto;
+padding: 0 15px;
+}
+
+.header {
+background: #8b0000;
+color: #fff;
+text-align: center;
+padding: 55px 20px;
+border-radius: 18px 18px 0 0;
+border-bottom: 8px solid #ddd;
+}
+
+.header h1 {
+font-size: 34px;
+margin-bottom: 18px;
+}
+
+.header p {
+font-size: 19px;
+margin-bottom: 10px;
+}
+
+.header .subtitle {
+margin-top: 25px;
+margin-bottom: 5px;
+}
+
+.form-container {
+background: #fff;
+padding: 30px;
+border-radius: 0 0 18px 18px;
+box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+margin-bottom: 24px;
+}
+
+.form-group label {
+display: block;
+font-weight: bold;
+margin-bottom: 8px;
+font-size: 16px;
+}
+
+.form-group input,
+.form-group select {
+width: 100%;
+padding: 15px;
+border: 1px solid #ccc;
+border-radius: 10px;
+font-size: 16px;
+background: #fff;
+color: #222;
+outline: none;
+transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+border-color: #8b0000;
+box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.12);
+}
+
+.form-group input.invalid,
+.form-group select.invalid {
+border-color: #d00000;
+}
+
+.error {
+display: block;
+color: #c00000;
+font-size: 13px;
+margin-top: 5px;
+min-height: 0;
+}
+
+.error:empty {
+display: none;
+}
+
+button {
+width: 100%;
+border: none;
+border-radius: 10px;
+padding: 15px;
+font-size: 16px;
+font-weight: bold;
+cursor: pointer;
+transition: background 0.2s, transform 0.2s;
+}
+
+button:active {
+transform: scale(0.98);
+}
+
+.submit-btn {
+background: #8b0000;
+color: white;
+margin-top: 5px;
+}
+
+.submit-btn:hover {
+background: #650000;
+}
+
+.reset-btn {
+background: #eee;
+color: #333;
+margin-top: 12px;
+}
+
+.reset-btn:hover {
+background: #ddd;
+}
+
+.footer-note {
+text-align: center;
+margin-top: 28px;
+color: #777;
+font-size: 13px;
+}
+
+/* Congratulations popup */
+
+.popup-overlay {
+position: fixed;
+inset: 0;
+z-index: 9999;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px;
+background: rgba(0, 0, 0, 0.75);
+animation: fadeIn 0.25s ease;
+}
+
+.popup-overlay[hidden] {
+display: none;
+}
+
+.popup-box {
+width: 100%;
+max-width: 390px;
+padding: 35px 25px;
+background: #fff;
+border-radius: 22px;
+text-align: center;
+box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
+animation: popIn 0.4s ease;
+}
+
+.celebration-icon {
+font-size: 60px;
+margin-bottom: 10px;
+}
+
+.popup-box h2 {
+color: #8b0000;
+font-size: 27px;
+margin-bottom: 12px;
+}
+
+.popup-box p {
+color: #333;
+font-size: 21px;
+font-weight: bold;
+overflow-wrap: anywhere;
+margin-bottom: 25px;
+}
+
+.continue-btn {
+background: #8b0000;
+color: #fff;
+}
+
+.continue-btn:hover {
+background: #650000;
+}
+
+@keyframes fadeIn {
+from {
+opacity: 0;
+}
+
+to {
+    opacity: 1;
+}
+
+}
+
+@keyframes popIn {
+from {
+opacity: 0;
+transform: scale(0.65);
+}
+
+to {
+    opacity: 1;
+    transform: scale(1);
+}
+
+}
+
+@media (max-width: 600px) {
+.container {
+margin: 15px auto;
+padding: 0 10px;
+}
+
+.header {
+    padding: 45px 15px;
+}
+
+.header h1 {
+    font-size: 28px;
+}
+
+.header p {
+    font-size: 17px;
+}
+
+.form-container {
+    padding: 22px 18px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 14px;
+    font-size: 15px;
+}
+
+.popup-box {
+    padding: 30px 20px;
+}
+
+.popup-box h2 {
+    font-size: 25px;
+}
+
+.popup-box p {
+    font-size: 19px;
+}
+
+}
