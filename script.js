@@ -13,34 +13,13 @@ const congratulationsName = document.getElementById("congratulationsName");
 const continueBtn = document.getElementById("continueBtn");
 
 const fields = [
-{
-input: fullNameInput,
-error: "nameError"
-},
-{
-input: matricInput,
-error: "matricError"
-},
-{
-input: departmentInput,
-error: "departmentError"
-},
-{
-input: emailInput,
-error: "emailError"
-},
-{
-input: phoneInput,
-error: "phoneError"
-},
-{
-input: genderInput,
-error: "genderError"
-},
-{
-input: programmeInput,
-error: "programmeError"
-}
+[fullNameInput, "nameError"],
+[matricInput, "matricError"],
+[departmentInput, "departmentError"],
+[emailInput, "emailError"],
+[phoneInput, "phoneError"],
+[genderInput, "genderError"],
+[programmeInput, "programmeError"]
 ];
 
 function showError(input, errorId, message) {
@@ -56,151 +35,91 @@ input.removeAttribute("aria-invalid");
 }
 
 function validateForm() {
-let isValid = true;
+let valid = true;
 
-fields.forEach(function (field) {
-    clearError(field.input, field.error);
+fields.forEach(([input, errorId]) => {
+    clearError(input, errorId);
 });
 
 const fullName = fullNameInput.value.trim();
-const matricNumber = matricInput.value.trim();
-const department = departmentInput.value;
+const matric = matricInput.value.trim();
 const email = emailInput.value.trim();
 const phone = phoneInput.value.trim();
-const gender = genderInput.value;
-const programme = programmeInput.value;
-
 
 const namePattern = /^[A-Za-z][A-Za-z\s'-]{1,}$/;
+const matricPattern = /^\d{8}$/;
+const phonePattern = /^\d{11}$/;
+const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.(com|org|net|edu|gov|ng|uk|com\.ng|edu\.ng)$/i;
 
 if (!fullName) {
-    showError(
-        fullNameInput,
-        "nameError",
-        "Please enter your full name."
-    );
-    isValid = false;
+    showError(fullNameInput, "nameError", "Please enter your full name.");
+    valid = false;
 } else if (!namePattern.test(fullName)) {
-    showError(
-        fullNameInput,
-        "nameError",
-        "Enter a valid name using letters, spaces, hyphens or apostrophes."
-    );
-    isValid = false;
+    showError(fullNameInput, "nameError", "Enter a valid full name using letters, spaces, hyphens or apostrophes.");
+    valid = false;
 }
 
-
-const matricPattern = /^\d{8}$/;
-
-if (!matricNumber) {
-    showError(
-        matricInput,
-        "matricError",
-        "Please enter your matriculation number."
-    );
-    isValid = false;
-} else if (!matricPattern.test(matricNumber)) {
-    showError(
-        matricInput,
-        "matricError",
-        "Matriculation number must contain exactly 8 digits, e.g. 20241234."
-    );
-    isValid = false;
+if (!matric) {
+    showError(matricInput, "matricError", "Please enter your matriculation number.");
+    valid = false;
+} else if (!matricPattern.test(matric)) {
+    showError(matricInput, "matricError", "Matriculation number must contain exactly 8 digits, e.g. 20241234.");
+    valid = false;
 }
 
-if (!department) {
-    showError(
-        departmentInput,
-        "departmentError",
-        "Please select your department."
-    );
-    isValid = false;
+if (!departmentInput.value) {
+    showError(departmentInput, "departmentError", "Please select your department.");
+    valid = false;
 }
-
-const emailPattern =
-    /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.(com|org|net|edu|gov|ng|uk|com\.ng|edu\.ng)$/i;
 
 if (!email) {
-    showError(
-        emailInput,
-        "emailError",
-        "Please enter your email address."
-    );
-    isValid = false;
-} else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
-           !emailPattern.test(email)) {
-    showError(
-        emailInput,
-        "emailError",
-        "Enter a valid email, e.g. name@gmail.com or name@yahoo.com."
-    );
-    isValid = false;
+    showError(emailInput, "emailError", "Please enter your email address.");
+    valid = false;
+} else if (!emailPattern.test(email) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showError(emailInput, "emailError", "Enter a valid email address, e.g. name@gmail.com or name@yahoo.com.");
+    valid = false;
 }
-
-const phonePattern = /^\d{11}$/;
 
 if (!phone) {
-    showError(
-        phoneInput,
-        "phoneError",
-        "Please enter your phone number."
-    );
-    isValid = false;
+    showError(phoneInput, "phoneError", "Please enter your phone number.");
+    valid = false;
 } else if (!phonePattern.test(phone)) {
-    showError(
-        phoneInput,
-        "phoneError",
-        "Phone number must contain exactly 11 digits."
-    );
-    isValid = false;
+    showError(phoneInput, "phoneError", "Phone number must contain exactly 11 digits.");
+    valid = false;
 }
 
-if (!gender) {
-    showError(
-        genderInput,
-        "genderError",
-        "Please select your gender."
-    );
-    isValid = false;
+if (!genderInput.value) {
+    showError(genderInput, "genderError", "Please select your gender.");
+    valid = false;
 }
 
-if (!programme) {
-    showError(
-        programmeInput,
-        "programmeError",
-        "Please select your programme."
-    );
-    isValid = false;
+if (!programmeInput.value) {
+    showError(programmeInput, "programmeError", "Please select your programme.");
+    valid = false;
 }
 
-return isValid;
+return valid;
 
 }
 
-
-form.addEventListener("submit", function (event) {
+form.addEventListener("submit", function(event) {
 event.preventDefault();
 
 if (!validateForm()) {
-    const firstInvalidField = form.querySelector(".invalid");
+    const firstInvalid = form.querySelector(".invalid");
 
-    if (firstInvalidField) {
-        firstInvalidField.focus();
+    if (firstInvalid) {
+        firstInvalid.focus();
     }
 
     return;
 }
 
-const fullName = fullNameInput.value.trim();
-
-
-congratulationsName.textContent = fullName;
+congratulationsName.textContent = fullNameInput.value.trim();
 popup.hidden = false;
-
 continueBtn.focus();
 
 });
-
 
 function closePopup() {
 popup.hidden = true;
@@ -208,34 +127,33 @@ popup.hidden = true;
 
 continueBtn.addEventListener("click", closePopup);
 
-popup.addEventListener("click", function (event) {
+popup.addEventListener("click", function(event) {
 if (event.target === popup) {
 closePopup();
 }
 });
 
-
-document.addEventListener("keydown", function (event) {
+document.addEventListener("keydown", function(event) {
 if (event.key === "Escape" && !popup.hidden) {
 closePopup();
 }
-    
-form.addEventListener("reset", function () {
-setTimeout(function () {
-fields.forEach(function (field) {
-clearError(field.input, field.error);
+});
+
+form.addEventListener("reset", function() {
+setTimeout(function() {
+fields.forEach(([input, errorId]) => {
+clearError(input, errorId);
 });
 }, 0);
 });
 
-
-fields.forEach(function (field) {
-field.input.addEventListener("input", function () {
-clearError(field.input, field.error);
+fields.forEach(([input, errorId]) => {
+input.addEventListener("input", function() {
+clearError(input, errorId);
 });
 
-field.input.addEventListener("change", function () {
-    clearError(field.input, field.error);
+input.addEventListener("change", function() {
+    clearError(input, errorId);
 });
 
 });
